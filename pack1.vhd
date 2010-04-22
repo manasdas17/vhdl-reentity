@@ -8,8 +8,6 @@ component test1 is
 	);
 end component;
 
-library blalalalo.ieee;
-use hahaha.ieee;
 
 --tatata tata
 
