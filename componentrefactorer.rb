@@ -13,11 +13,28 @@ class ComponentRefactorer
 		Dir['*vhd'].each do |vhd_file|
 			open(vhd_file) do |content|
 				if not content.grep(/component\s+#{@entity}/).empty?
-					files.push vhd_file
+					@files.push vhd_file
 				end
 			end
 		end
 		return @files.sort
+	end
+
+	def refactor_components
+		if @files = [] then get_files_with_components end
+		new_body = @eparser.get_entity_body
+		puts "Updating the files:"
+		puts @files
+		for file in @files do 
+			open(file) do |content|
+				content_string = content.read
+				aux = content_string.match(/(component\s+#{@entity}\s+is\s+)(.*?)(end\s+component)/m)[2]
+				content_string[aux] = new_body
+				f = File.open(file,'w')	
+				f.puts content_string
+				f.close
+			end
+		end
 	end
 
 end
@@ -42,9 +59,11 @@ class TestComponentRefactorer < Test::Unit::TestCase
 		assert_equal crefactorer.get_files_with_components,['pack1.vhd','test3.vhd'].sort
 	end
 
-#	def test_ComponentRefactorer_refactor_components
-#	end
+	def test_ComponentRefactorer_refactor_components
+		eparser = EntityParser.new 'test1'
+		crefactorer = ComponentRefactorer.new eparser
+		crefactorer.refactor_components
+	end
 
 end
-
 
