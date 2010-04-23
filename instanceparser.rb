@@ -11,8 +11,8 @@ class InstanceParser
 		Dir['*.vhd'].each do |file|
 			i = 1
 			open(file).each_line do |line|
-				if not line.grep(/\S+:\s+#{@entity}/).empty?
-					puts "file:" + file + " :"+ i.to_s + " - " + line
+				if not line.grep(/\S+:\s+#{@entity}\s+/).empty?
+					puts "in " + file + " line "+ i.to_s + ":  " + line
 				end
 				i += 1
 			end
