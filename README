@@ -1,6 +1,6 @@
-<h1>Instructions:</h1>ÎÐ
+<h1>Instructions:</h1>
 
-<p>You must have ruby1.9 installed in your machine. Then, put the .rb files in a folder and add that to your path, <br />
+<p>You must have ruby1.8 installed in your machine. Then, put the .rb files in a folder and add that to your path, <br />
 or even add the .rb files to your VHDL project folder. To refactor the VHDL when an entity changes, run: <br /> </p>
 <p>
 	<b>ruby vhdl-reentity entity</b>
