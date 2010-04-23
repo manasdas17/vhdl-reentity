@@ -1,4 +1,3 @@
-require 'test/unit'
 
 class InstanceParser
 	
@@ -8,11 +7,12 @@ class InstanceParser
 
 	def find_instances 
 		#a unix grep does this with 'grep -Rn entity *'
+		puts "ATTENTION: You must update the following instances of #{@entity.upcase}"
 		Dir['*.vhd'].each do |file|
 			i = 1
 			open(file).each_line do |line|
 				if not line.grep(/\S+:\s+#{@entity}/).empty?
-					puts "file: " + file + ": "+ i.to_s + ": " + line
+					puts "file:" + file + " :"+ i.to_s + " - " + line
 				end
 				i += 1
 			end
@@ -20,14 +20,4 @@ class InstanceParser
 	end
 	
 end
-
-class TestInstanceParser < Test::Unit::TestCase
-
-	def test_InstanceParser_find_instances
-		iparser = InstanceParser.new 'test1'
-		iparser.find_instances
-	end
-
-end
-
 
