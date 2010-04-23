@@ -1,0 +1,5 @@
+Instructions:
+
+You must have ruby1.9 installed in your machine. Then, put the .rb files in a folder and add that to your path, or even add the .rb files to your VHDL project folder. To refactor the VHDL when an entity changes, run:
+
+ruby vhdl-reentity entity
